@@ -17,13 +17,18 @@ public class BankAccount {
     public void deposit(double balance){
         if (balance > 0) {
             this.availableBalance += balance;
+            return;
         }
+
+        System.out.println("Invalid Deposit! Amount should be greater than 0");
     }
 
     public void withdraw(double amount){
         if (amount <= this.availableBalance && amount > 0){
             this.availableBalance -= amount;
+            return;
         }
+        System.out.println("Invalid Withdraw! Amount should be greater than 0");
     }
 
     public void displayInformation(){

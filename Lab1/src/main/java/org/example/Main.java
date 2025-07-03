@@ -3,8 +3,22 @@ package org.example;
 import java.util.*;
 
 public class Main {
-    public static void createAccount(ArrayList<BankAccount> bankAccounts, int number, String name, double balance){
+    public static boolean createAccount(ArrayList<BankAccount> bankAccounts, int number, String name, double balance){
+        if (balance < 0){
+            System.out.println("Invalid Account Creation. Balance should be greater than 0");
+            return false;
+        }
+
+        for (BankAccount bankAccount : bankAccounts) {
+            if (bankAccount.getAccountNumber() == number) {
+                System.out.println("Invalid Account Creation. Account Number taken");
+                return false;
+            }
+        }
+
+
         bankAccounts.add(new BankAccount(number, name, balance));
+        return true;
     }
 
     public static void viewAllAccounts(ArrayList<BankAccount> bankAccounts){
@@ -87,8 +101,9 @@ public class Main {
                         scanner.nextLine();
                     }
 
-                    System.out.println("Account Created Successfully");
-                    createAccount(bankAccounts, accountNumber, accountName, initialDeposit);
+                    boolean isCreated = createAccount(bankAccounts, accountNumber, accountName, initialDeposit);
+
+                    if (isCreated) System.out.println("Account Created Successfully");
 
                     break;
                 case 2:
