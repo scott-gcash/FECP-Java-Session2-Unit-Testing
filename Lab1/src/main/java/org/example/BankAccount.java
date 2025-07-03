@@ -27,7 +27,7 @@ public class BankAccount {
     }
 
     public void withdraw(double amount){
-        if (amount < 0 || amount > availableBalance){
+        if (amount < 0 || amount > this.availableBalance){
             System.out.println("Invalid Withdraw! Amount should be greater than 0 or not greater than your current balance.");
             return;
         }
@@ -44,4 +44,8 @@ public class BankAccount {
     public int getAccountNumber() {
         return accountNumber;
     }
+
+    public double getAvailableBalance(){ return availableBalance; }
+
+    public String getBankAccountHolderName() { return bankAccountHolderName; }
 }
